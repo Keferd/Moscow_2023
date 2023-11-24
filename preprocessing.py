@@ -88,7 +88,7 @@ def remove_stopwords(text, custom_stopwords):
 
 
 def remove_duplicate_puntcs(text):
-    text = re.sub(r'([.,!?;])\1+', r'\1', text)
+    text = re.sub(r'([-+.,!?;])\1+', r'\1', text)
     return text
 
 
