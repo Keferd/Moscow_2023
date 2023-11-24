@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moscow</title>
+    <link rel="stylesheet" href="static/style.css">
+    <link rel="stylesheet" href="static/table.css">
+
+    <link href="static/tabulator/dist/css/tabulator.css" rel="stylesheet">
+    <script type="text/javascript" src="static/tabulator/dist/js/tabulator.js"></script>
+</head>
+<body>
+    <header class="header">
+        <a class="h1" href="">Обработка обращений граждан</a>
+        <a class="h1 menu-item" href="index">Сообщение</a>
+        <a class="h1 menu-item" href="table">Таблица</a>
+    </header>
+    <main class="main" id="main">
+        <div class="main__head">
+            <input class="main__file-input" type="file" name="file" id="file" value="Загрузить файл"  required>
+            <div class="main__head__partition">
+                
+            </div>
+            <button class="table__send-button">
+                Запустить
+            </button>
+        </div>
+        <div class="main__area" id="main__area">
+            
+        </div>
+        <div class="main__foot">
+            <button class="main__foot__button" id="download-csv" disabled>Скачать csv-таблицу</button>
+        </div>
+    </main>
+    <footer class="footer">
+        <p class="footer__team">
+            Это база
+        </p>
+    </footer>
+    
+    <script src="static/js/tablesend.js"></script>
+</body>
+</html>
