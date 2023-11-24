@@ -7,6 +7,34 @@
     <link rel="stylesheet" href="static/style.css">
 </head>
 <body>
-    Moscow
+    <header class="header">
+        <a class="h1" href="">Обработка обращений граждан</a>
+    </header>
+    <main class="main">
+        <div class="main__input-area">
+            <div class="main__input-area__content">
+                <p class="main__title main__title_input">Входные данные</p>
+                <div class="main__input-area__partition"></div>
+                <textarea class="main__textarea" placeholder="Введите сообщение" name="" id="main__textarea" cols="100" rows="10"></textarea>
+                <button class="main__send-button">Отправить</button>
+            </div>
+        </div>
+        <div class="main__output-area">
+            <div class="main__output-area__content">
+                <p class="main__title main__title_output">Результат</p>
+                <div class="main__result-area" id="main__result-area">
+                    <p class="main__result-area__dummy">
+                        Здесь отобразиться результат...
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <p class="footer__team">
+            Это база
+        </p>
+    </footer>
+    <script src="static/js/textsend.js"></script>
 </body>
 </html>
