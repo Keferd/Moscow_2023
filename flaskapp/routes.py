@@ -12,6 +12,8 @@ import matplotlib.pyplot as plt
 import base64
 from io import BytesIO
 
+from flaskapp.ml.inference import predict_group, predict_theme
+
 @app.route('/')
 @app.route('/index')
 def index():
@@ -46,12 +48,15 @@ def post_text():
         image_base64 = base64.b64encode(buffer.read()).decode('utf-8')
         # plt.close()
 
+        predicted_group = predict_group(text)
+        predicted_theme = predict_theme(text=text, predicted_group=predicted_group)
+
         if text:
             response_data = {
                 'image_url': image_base64,
                 'executor': "Лысьвенский городской округ", 
-                'group': "Благоустройство",
-                'subject': "★ Ямы во дворах"
+                'group': predicted_group,
+                'subject': predicted_theme
             }
 
             return jsonify(response_data)
