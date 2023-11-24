@@ -50,6 +50,3 @@ def predict_theme(text: str, predicted_group: str):
     predicted_class_idx = torch.argmax(probs[0]).item()
 
     return id2label[str(predicted_class_idx)]
-
-
-predict_group("Почему полк не будет стоять на митинге,а пойдет в парк Гагарина. Кто это придумал?")
