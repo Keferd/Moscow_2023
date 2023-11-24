@@ -81,7 +81,46 @@ sendfilebtn.addEventListener("click", function (e) {
             
                 
                 document.getElementById("download-csv").addEventListener("click", function() {
-                    table.download("csv", "data.csv");
+
+                    // Получаем заголовки столбцов
+                    var headers = table.getColumnDefinitions().map(column => column.title);
+
+                    // Получаем данные таблицы в виде массива объектов
+                    var data = table.getData();
+
+                    // Преобразуем заголовки в CSV-строку
+                    var headersCsv = headers.join(";");
+
+                    // Преобразуем данные в CSV-строку
+                    var dataCsv = data.map(row => Object.values(row).join(";")).join("\n");
+
+                    // Создаем Blob (бинарный объект) с CSV-строкой
+                    var blob = new Blob([headersCsv + "\n" + dataCsv], { type: "text/csv;charset=utf-8" });
+
+                    // Создаем элемент ссылки для скачивания
+                    var link = document.createElement("a");
+                    link.href = URL.createObjectURL(blob);
+
+                    // Устанавливаем имя файла для скачивания
+                    link.download = "data.csv";
+
+                    // Добавляем ссылку к документу и эмулируем клик по ней
+                    document.body.appendChild(link);
+                    link.click();
+
+                    // Удаляем ссылку из документа
+                    document.body.removeChild(link);
+
+                    // table.download("csv", "data.csv", {
+                    //     delimiter: ";", // Устанавливаем точку с запятой в качестве разделителя
+                    //     quotes: false,       // Отключаем кавычки вокруг каждого значения
+                    //     quoteValues: false,   // Отключаем кавычки вокруг значений
+                    //     format: {
+                    //         quote: "",       // Отключаем кавычки вокруг значений
+                    //         header: false,    // Отключаем включение заголовков
+                    //         footer: false     // Отключаем включение подвала
+                    //     }
+                    // });
                 });
 
                 document.getElementById("download-csv").disabled = false;
