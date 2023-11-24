@@ -66,7 +66,7 @@ def remove_extra_spaces(text):
 
 
 def remove_special_characters(text):
-    special_characters = "@#$%^&*+"
+    special_characters = "@#$%^&*+<>_'"
     return ''.join(char for char in text if char not in special_characters)
 
 
@@ -102,4 +102,15 @@ def remove_all_trash(text, punct=False, stopword=False, custom_stopwords=True):
     text = remove_extra_spaces(text)
     if not stopword:
         text = remove_stopwords(text, custom_stopwords)
+    return text
+
+
+def soft_remove(text):
+    text = remove_emoji(text)
+    text = remove_vk_specials(text)
+    text = remove_emails(text)
+    text = remove_html_tags(text)
+    text = remove_urls(text)
+    text = remove_special_characters(text)
+    text = remove_extra_spaces(text)
     return text
