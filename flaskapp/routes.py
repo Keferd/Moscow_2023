@@ -17,6 +17,10 @@ from io import BytesIO
 def index():
     return render_template('index.html')
 
+@app.route('/table')
+def table():
+    return render_template('table.html')
+
 @app.route('/api/text', methods=['POST'])
 def post_text():
     try:
@@ -56,6 +60,26 @@ def post_text():
     except Exception as e:
         print(e)
         return str(e), 500
+
+@app.route('/api/table', methods=['POST'])
+def post_table():
+    file = request.files["file"]
+
+    if file and file.filename.endswith('.csv'):
+        try:
+            csv_data = pd.read_csv(file, delimiter=';')
+            csv_data.columns = ['executor', 'group', 'text', 'subject']
+
+            data = csv_data.to_dict(orient='records')
+
+            json_data = json.dumps(data, indent=4)
+
+            return json_data
+        except Exception as e:
+            print(e)
+            return str(e), 500
+    else:
+        return "Файл должен быть формата .csv", 400
 
 def json_response(data, code=200):
     return Response(status=code, mimetype="application/json", response=json.dumps(data))
