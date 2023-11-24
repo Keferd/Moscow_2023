@@ -87,6 +87,11 @@ def remove_stopwords(text, custom_stopwords):
     return ' '.join(filtered_words)
 
 
+def remove_duplicate_puntcs(text):
+    text = re.sub(r'([.,!?;])\1+', r'\1', text)
+    return text
+
+
 def remove_all_trash(text, punct=False, stopword=False, custom_stopwords=True):
     text = remove_emoji(text)
     text = remove_vk_specials(text)
@@ -102,6 +107,7 @@ def remove_all_trash(text, punct=False, stopword=False, custom_stopwords=True):
     text = remove_extra_spaces(text)
     if not stopword:
         text = remove_stopwords(text, custom_stopwords)
+    text = remove_duplicate_puntcs(text)
     return text
 
 
@@ -113,4 +119,5 @@ def soft_remove(text):
     text = remove_urls(text)
     text = remove_special_characters(text)
     text = remove_extra_spaces(text)
+    text = remove_duplicate_puntcs(text)
     return text
