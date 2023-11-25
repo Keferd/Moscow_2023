@@ -34,7 +34,9 @@ def add_loc(df):
 def subbmit(df):
     df = add_group_column(df)
     df = add_topic_column(df)
-    df.to_csv('output.csv', index=False)
+    df = df.drop(columns="text")
+    df.columns = ["id", "Группа тем", "Тема"]
+    df.to_csv('submission.csv', sep=';', index=False, encoding='utf-8')
     return df
 
 
@@ -45,3 +47,9 @@ def get_frontend_table(df):
     df = add_summarization_text(df)
     df = add_loc(df)
     return df
+
+
+test = pd.read_csv("test.csv", encoding="UTF-8", sep=";")
+test.columns = ["id", "text"]
+
+subbmit(test)
