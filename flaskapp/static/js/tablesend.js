@@ -19,6 +19,7 @@ sendfilebtn.addEventListener("click", function (e) {
 
             <style>
                 .img__container {
+                    margin-top: 50px;
                     flex: 1;
                     width: 100%;
                     height: 100%;
@@ -69,13 +70,16 @@ sendfilebtn.addEventListener("click", function (e) {
                     paginationSize:20,         //allow 7 rows per page of data
                     paginationCounter:"rows", //display count of paginated rows in footer
                     // movableColumns:false,      //allow column order to be changed
-                    // resizableRows: true, // Разрешить изменение высоты строк
+                    resizableRows: true, // Разрешить изменение высоты строк
                     // wordWrap: false, // Разрешить перенос текста в ячейках
                     columns:[                 //define the table columns
-                        {title:"Исполнитель", field:"executor", width: "10%", formatter:"textarea",  editor:true},
+                        {title:"Текст инцидента", field:"text", width: "30%", formatter:"textarea", editor:true},
                         {title:"Группа тем", field:"group", width: "10%", formatter:"textarea", editor:true},
-                        {title:"Текст инцидента", field:"text", width: "60%", formatter:"textarea", editor:true},
-                        {title:"Тема", field:"subject", width: "20%", formatter:"textarea", editor:true},
+                        {title:"Тема", field:"topic", width: "10%", formatter:"textarea", editor:true},
+                        // {title:"Исполнитель", field:"executor", width: "10%", formatter:"textarea",  editor:true},
+                        {title:"Исправленный текст", field:"spell", width: "25%", formatter:"textarea", editor:true},
+                        {title:"Главная мысль", field:"summarization", width: "15%", formatter:"textarea", editor:true},
+                        {title:"Локация", field:"loc", width: "10%", formatter:"textarea", editor:true},
                     ],
                 });
             

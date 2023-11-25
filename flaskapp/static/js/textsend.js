@@ -62,9 +62,21 @@ sendfilebtn.addEventListener("click", function (e) {
                 var imageUrl = URL.createObjectURL(blob);
 
 
-                var executor = data.executor;
                 var group = data.group;
-                var subject = data.subject;
+                var topic = data.topic;
+                var executor = data.executor;
+                var spell = data.spell;
+                var summarization = data.summarization;
+                var loc = data.loc;
+
+                
+
+                // var executor = data.executor;
+                // var group = data.group;
+                // var subject = data.subject;
+                // var corrected = data.corrected;
+                // var main = data.main;
+                // var location = data.location;
 
 
                 document.getElementById("main__result-area").innerHTML = `
@@ -73,7 +85,17 @@ sendfilebtn.addEventListener("click", function (e) {
                     <p class="result-text result-text_title">Группа тем:</p>
                     <p class="result-text">` + group + `</p>
                     <p class="result-text result-text_title">Тема:</p>
-                    <p class="result-text">` + subject + `</p>
+                    <p class="result-text">` + topic + `</p>
+
+                    <div class="result-partition"></div>
+
+                    <p class="result-text result-text_title">Локация:</p>
+                    <p class="result-text">` + loc + `</p>
+                    <p class="result-text result-text_title">Главная мысль:</p>
+                    <p class="result-text">` + summarization + `</p>
+                    <p class="result-text result-text_title">Исправленный текст:</p>
+                    <p class="result-text">` + spell + `</p>
+
                     <div class="result-partition"></div>
                     
                     <p class="result-text result-text_title">Облако тэгов:</p>
