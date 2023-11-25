@@ -10,4 +10,4 @@ def extract_addresses(text):
         for entity in sentence.entities:
             if entity.type == 'LOC':
                 addresses.append(entity.text)
-    return set(addresses)
+    return list(set(addresses))
