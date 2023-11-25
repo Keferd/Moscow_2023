@@ -42,7 +42,7 @@
 5. Установите необходимые зависимости, выполнив следующую команду:
 - **pip install -r requirements.txt**
 6. Добавьте в папку ml/catboost/ модель my_cat_boost_model_2 с гугл-диска:
-- ** https://drive.google.com/drive/folders/1M36WJNtxF0SkYT3tPBI0YoOZx3_55njU**
+- https://drive.google.com/drive/folders/1M36WJNtxF0SkYT3tPBI0YoOZx3_55njU
 7. Запустите приложение, выполнив следующую команду:
 - **python main.py**
 
