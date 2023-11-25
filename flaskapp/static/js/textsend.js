@@ -65,6 +65,9 @@ sendfilebtn.addEventListener("click", function (e) {
                 var executor = data.executor;
                 var group = data.group;
                 var subject = data.subject;
+                var corrected = data.corrected;
+                var main = data.main;
+                var location = data.location;
 
 
                 document.getElementById("main__result-area").innerHTML = `
@@ -74,6 +77,16 @@ sendfilebtn.addEventListener("click", function (e) {
                     <p class="result-text">` + group + `</p>
                     <p class="result-text result-text_title">Тема:</p>
                     <p class="result-text">` + subject + `</p>
+
+                    <div class="result-partition"></div>
+
+                    <p class="result-text result-text_title">Локация:</p>
+                    <p class="result-text">` + location + `</p>
+                    <p class="result-text result-text_title">Главная мысль:</p>
+                    <p class="result-text">` + main + `</p>
+                    <p class="result-text result-text_title">Исправленный текст:</p>
+                    <p class="result-text">` + corrected + `</p>
+
                     <div class="result-partition"></div>
                     
                     <p class="result-text result-text_title">Облако тэгов:</p>

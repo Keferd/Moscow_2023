@@ -70,7 +70,7 @@
 
 .main__output-area {
     background-color: #292e33;
-    width: 320px;
+    width: 520px;
 }
 
 .main__output-area__content {
@@ -110,7 +110,7 @@
 
 
 
-@media screen and (max-width: 720px) {
+@media screen and (max-width: 950px) {
     .main__output-area {
         width: 100%
     }

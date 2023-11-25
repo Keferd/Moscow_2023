@@ -14,10 +14,10 @@ themes_model = AutoModelForSequenceClassification.from_pretrained(model_path_the
 
 
 def predict_group(text: str):
-    with open('helpers\\label2id_group.json', 'r') as json_file:
+    with open('flaskapp/ml/helpers/label2id_group.json', 'r') as json_file:
         label2id = json.load(json_file)
 
-    with open('helpers\\id2label_group.json', 'r') as json_file:
+    with open('flaskapp/ml/helpers/id2label_group.json', 'r') as json_file:
         id2label = json.load(json_file)
 
     tokens = group_tokenizer(text, return_tensors="pt")

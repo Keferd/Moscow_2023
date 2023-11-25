@@ -56,7 +56,10 @@ def post_text():
                 'image_url': image_base64,
                 'executor': "Лысьвенский городской округ", 
                 'group': predicted_group,
-                'subject': predicted_theme
+                'subject': predicted_theme,
+                'corrected':"'почему не сидится тротуары в перми. ждете пока на вас подадут в суд кто пострадает ходить вообще не возможно",
+                'main':"'Добрый день!подскажите тариф повысился на обращение с тко?",
+                'location':"'Пермь г, +79194692145. В Перми"
             }
 
             return jsonify(response_data)
