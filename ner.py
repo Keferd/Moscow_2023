@@ -1,7 +1,9 @@
 import stanza
+from spell_and_summarization import spell_txt
 
 stanza.download('ru')
 nlp = stanza.Pipeline('ru')
+
 
 def extract_addresses(text):
     addresses = []
@@ -10,4 +12,6 @@ def extract_addresses(text):
         for entity in sentence.entities:
             if entity.type == 'LOC':
                 addresses.append(entity.text)
-    return list(set(addresses))
+    addr = ' '.join(list(set(addresses)))
+    addr = spell_txt(addr)
+    return addr
