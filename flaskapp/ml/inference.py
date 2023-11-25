@@ -1,9 +1,10 @@
 import torch
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 import json
+from os.path import dirname
 
-model_path_group = "models\\fine-tune-rubert-26cls_512tokens\\"
-model_path_themes = "models\\rubert_195cls_512tk_10e\\"
+model_path_group = "Nyarlat/text2group"
+model_path_themes = "Nyarlat/text2topic"
 
 group_tokenizer = AutoTokenizer.from_pretrained(model_path_group)
 group_model = AutoModelForSequenceClassification.from_pretrained(model_path_group)
