@@ -19,6 +19,7 @@ sendfilebtn.addEventListener("click", function (e) {
 
             <style>
                 .img__container {
+                    margin-top: 50px;
                     flex: 1;
                     width: 100%;
                     height: 100%;

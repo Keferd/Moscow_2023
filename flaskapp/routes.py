@@ -13,7 +13,9 @@ import base64
 from io import BytesIO
 
 from flaskapp.ml.inference import predict_group, predict_theme
-from flaskapp.utils import get_frontend_table
+from preprocessing import soft_remove
+from spell_and_summarization import spell_txt, summarization_txt
+from ner import extract_addresses
 
 @app.route('/')
 @app.route('/index')
@@ -50,17 +52,21 @@ def post_text():
         # plt.close()
 
         predicted_group = predict_group(text)
-        predicted_theme = predict_theme(text=text, predicted_group=predicted_group)
+        predicted_topic = predict_theme(text=text, predicted_group=predicted_group)
+        predicted_executor = "___"
+        predicted_spell = spell_txt(soft_remove(text))
+        predicted_summarization = summarization_txt(soft_remove(text))
+        predicted_loc = extract_addresses(text)
 
         if text:
             response_data = {
                 'image_url': image_base64,
-                'executor': "Лысьвенский городской округ", 
+                'executor': predicted_executor, 
                 'group': predicted_group,
-                'subject': predicted_theme,
-                'corrected':"'почему не сидится тротуары в перми. ждете пока на вас подадут в суд кто пострадает ходить вообще не возможно",
-                'main':"'Добрый день!подскажите тариф повысился на обращение с тко?",
-                'location':"'Пермь г, +79194692145. В Перми"
+                'topic': predicted_topic,
+                'spell': predicted_spell,
+                'summarization': predicted_summarization,
+                'loc': predicted_loc
             }
 
             return jsonify(response_data)
