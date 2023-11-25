@@ -6,11 +6,11 @@ from os.path import dirname
 model_path_group = "Nyarlat/text2group"
 model_path_themes = "Nyarlat/text2topic"
 
-group_tokenizer = AutoTokenizer.from_pretrained(model_path_group)
-group_model = AutoModelForSequenceClassification.from_pretrained(model_path_group)
+group_tokenizer = AutoTokenizer.from_pretrained(model_path_group, token="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")
+group_model = AutoModelForSequenceClassification.from_pretrained(model_path_group, token="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")
 
-themes_tokenizer = AutoTokenizer.from_pretrained(model_path_themes)
-themes_model = AutoModelForSequenceClassification.from_pretrained(model_path_themes)
+themes_tokenizer = AutoTokenizer.from_pretrained(model_path_themes, token="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")
+themes_model = AutoModelForSequenceClassification.from_pretrained(model_path_themes, token="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")
 
 
 def predict_group(text: str):
