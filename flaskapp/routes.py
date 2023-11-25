@@ -12,6 +12,8 @@ import matplotlib.pyplot as plt
 import base64
 from io import BytesIO
 
+from flaskapp.utils import get_frontend_table
+
 from flaskapp.ml.inference import predict_group, predict_theme
 from preprocessing import soft_remove
 from spell_and_summarization import spell_txt, summarization_txt
@@ -51,12 +53,21 @@ def post_text():
         image_base64 = base64.b64encode(buffer.read()).decode('utf-8')
         # plt.close()
 
+
+        text = soft_remove(text)
         predicted_group = predict_group(text)
         predicted_topic = predict_theme(text=text, predicted_group=predicted_group)
         predicted_executor = "___"
-        predicted_spell = spell_txt(soft_remove(text))
-        predicted_summarization = summarization_txt(soft_remove(text))
+        predicted_spell = spell_txt(text)
+        predicted_summarization = summarization_txt(text)
         predicted_loc = extract_addresses(text)
+
+        # predicted_group = predict_group(text)
+        # predicted_topic = predict_theme(text=text, predicted_group=predicted_group)
+        # predicted_executor = "___"
+        # predicted_spell = spell_txt(soft_remove(text))
+        # predicted_summarization = summarization_txt(soft_remove(text))
+        # predicted_loc = extract_addresses(text)
 
         if text:
             response_data = {
