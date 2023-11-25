@@ -13,7 +13,7 @@ import base64
 from io import BytesIO
 
 from flaskapp.ml.inference import predict_group, predict_theme
-from utils import get_frontend_table
+from flaskapp.utils import get_frontend_table
 
 @app.route('/')
 @app.route('/index')
@@ -76,8 +76,11 @@ def post_table():
             csv_data = pd.read_csv(file, delimiter=';')
             csv_data.columns = ['executor', 'group', 'text', 'subject']
 
-            text = csv_data['text']
+            text = pd.DataFrame(csv_data['text'])
             front_table = get_frontend_table(text)
+
+            print(front_table.columns)
+            print(front_table)
 
             data = front_table.to_dict(orient='records')
             n = len(front_table.columns)
@@ -86,7 +89,7 @@ def post_table():
 
             return json_data
         except Exception as e:
-            print(e)
+            print("error:", e)
             return str(e), 500
     else:
         return "Файл должен быть формата .csv", 400
