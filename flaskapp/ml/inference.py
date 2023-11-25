@@ -2,8 +2,9 @@ import torch
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 import json
 from os.path import dirname
+from preprocessing import soft_remove
 
-model_path_group = "Nyarlat/text2group"
+model_path_group = "Nyarlat/text2groupV2"
 model_path_themes = "Nyarlat/text2topicV2"
 
 group_tokenizer = AutoTokenizer.from_pretrained(model_path_group, token="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")
@@ -14,6 +15,7 @@ themes_model = AutoModelForSequenceClassification.from_pretrained(model_path_the
 
 
 def predict_group(text: str):
+    text = soft_remove(text)
     with open('ml/helpers/label2id_group.json', 'r') as json_file:
         label2id = json.load(json_file)
 
@@ -33,10 +35,11 @@ def predict_group(text: str):
 
 
 def predict_theme(text: str, predicted_group: str):
-    with open('ml/helpers/label2id_theme.json', 'r') as json_file:
+    text = soft_remove(text)
+    with open('ml/helpers/label2id_topic.json', 'r') as json_file:
         label2id = json.load(json_file)
 
-    with open('ml/helpers/id2label_theme.json', 'r') as json_file:
+    with open('ml/helpers/id2label_topic.json', 'r') as json_file:
         id2label = json.load(json_file)
 
     text = predicted_group + text + predicted_group

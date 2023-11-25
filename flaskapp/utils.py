@@ -48,8 +48,8 @@ def get_frontend_table(df):
     df = add_loc(df)
     return df
 
+# test = pd.read_csv("test.csv", encoding="UTF-8", sep=";")
+# test.columns = ["id", "text"]
+#
+# subbmit(test)
 
-test = pd.read_csv("test.csv", encoding="UTF-8", sep=";")
-test.columns = ["id", "text"]
-
-subbmit(test)
