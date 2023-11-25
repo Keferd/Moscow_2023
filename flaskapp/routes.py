@@ -14,6 +14,7 @@ from io import BytesIO
 
 from flaskapp.utils import get_frontend_table
 
+from flaskapp.ml.catboost.performer_classifier import performer_classifier
 from flaskapp.ml.inference import predict_group, predict_theme
 from preprocessing import soft_remove
 from spell_and_summarization import spell_txt, summarization_txt
@@ -57,10 +58,10 @@ def post_text():
         text = soft_remove(text)
         predicted_group = predict_group(text)
         predicted_topic = predict_theme(text=text, predicted_group=predicted_group)
-        predicted_executor = "___"
         predicted_spell = spell_txt(text)
         predicted_summarization = summarization_txt(text)
         predicted_loc = extract_addresses(text)
+        predicted_executor = performer_classifier(predicted_group, predicted_topic)
 
         # predicted_group = predict_group(text)
         # predicted_topic = predict_theme(text=text, predicted_group=predicted_group)

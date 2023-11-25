@@ -1,5 +1,6 @@
 import pandas as pd
 
+from flaskapp.ml.catboost.performer_classifier import performer_classifier
 from flaskapp.ml.inference import predict_group, predict_theme
 from preprocessing import soft_remove
 from spell_and_summarization import spell_txt, summarization_txt
@@ -30,6 +31,9 @@ def add_loc(df):
     df['loc'] = df['spell'].copy().apply(lambda x: extract_addresses(x))
     return df
 
+def add_performer(df):
+    df['performer'] = df.apply(lambda row: performer_classifier(row['group'], row['topic']))
+    return df
 
 def subbmit(df):
     df = add_group_column(df)
@@ -44,4 +48,5 @@ def get_frontend_table(df):
     df = add_spell_text(df)
     df = add_summarization_text(df)
     df = add_loc(df)
+    df = add_performer(df)
     return df
